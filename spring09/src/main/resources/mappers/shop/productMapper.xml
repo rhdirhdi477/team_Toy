@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 다른 mapper와 중복되지 않도록 네임스페이스 기재 -->
+<mapper namespace="product">
+	<select id="product_list"
+		resultType="com.example.spring09.model.shop.dto.ProductDTO">
+		select * from product1
+		where protype=1
+		order by product_id
+	</select>
+
+	<select id="product_list2"
+		resultType="com.example.spring09.model.shop.dto.ProductDTO">
+		select * from product1
+		where protype=2
+		order by product_id
+	</select>
+	
+	<select id="product_list3"
+		resultType="com.example.spring09.model.shop.dto.ProductDTO">
+		select * from product1
+		where protype=3
+		order by product_id
+	</select>
+	
+	<select id="product_list4"
+		resultType="com.example.spring09.model.shop.dto.ProductDTO">
+		select * from product1
+		where protype=4
+		order by product_id
+	</select>
+	
+	<select id="product_list5"
+		resultType="com.example.spring09.model.shop.dto.ProductDTO">
+		select * from product1
+		
+	</select>
+	
+
+	<select id="detail_product"
+		resultType="com.example.spring09.model.shop.dto.ProductDTO">
+		select * from product1
+		where product_id=#{product_id}
+	</select>
+
+	<!-- 상품 등록 -->
+	<insert id="insert">
+		insert into product1 values
+		(seq_product.nextval,
+		#{product_name}, #{price}
+		, #{description},#{protype}, #{picture_url} )
+	</insert>
+
+	<!-- 상품정보 수정 -->
+	<update id="update_product">
+		update product1
+		set		
+		product_name=#{product_name},
+		price=#{price},
+		description=#{description},
+		protype=#{protype},
+		picture_url=#{picture_url}
+		where product_id=#{product_id}
+	</update>
+
+	<!-- 첨부파일 이름 -->
+	<select id="fileInfo" resultType="String">
+		select picture_url from
+		product1
+		where product_id=#{product_id}
+	</select>
+
+	<!-- 상품 레코드 삭제 -->
+	<delete id="product_delete">
+		delete from product1
+		where product_id=#{product_id}
+	</delete>
+
+
+
+</mapper>
+
+
+
+
